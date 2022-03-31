@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head th:insert="/layout/header :: header">
+<title>
+    PRODUCT LIST
+</title>
+</head>
+<body>
+<h3>
+    PRODUCT LIST
+</h3>
+<h5>
+    <a th:href="@{/product/create}">
+        ADD PRODUCT
+    </a>
+</h5>
+<div class="notify">
+    <h6 th:if="${suscess} != null">
+        <span th:text="${suscess}"></span>
+    </h6>
+
+    <h6 th:if="${search} != null">
+        <span>Sản phẩm cần tìm</span>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>DESCRIPTION</th>
+                <th>PROVIDER</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="row, rowStart : ${search}">
+                <td th:text="${rowStart.count}"></td>
+                <td th:text="${row.getName()}"></td>
+                <td th:text="${row.getPrice()}"></td>
+                <td th:text="${row.getDescription()}"></td>
+                <td th:text="${row.getProvider()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </h6>
+</div>
+
+<div>
+    <form th:action="@{product/search}">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+</div>
+    <table id="products">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>DESCRIPTION</th>
+            <th>PROVIDER</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+            <th>VIEW</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="row, rowStart : ${product}">
+            <td th:text="${rowStart.count}"></td>
+            <td th:text="${row.getName()}"></td>
+            <td th:text="${row.getPrice()}"></td>
+            <td th:text="${row.getDescription()}"></td>
+            <td th:text="${row.getProvider()}"></td>
+            <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">Edit</a></td>
+            <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">Delete</a></td>
+            <td><a th:href="@{/product/{id}/view(id=${row.getId()})}">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+<footer th:insert="/layout/footer :: footer"></footer>
+</body>
+</html>

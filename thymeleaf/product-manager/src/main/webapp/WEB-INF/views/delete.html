@@ -1,0 +1,56 @@
+<html xmlns:th="www.thymeleaf.org">
+<head th:insert="/layout/header :: header">
+    <title>DELETE</title>
+</head>
+<body>
+<h5>
+    <a th:href="@{/product}">
+        Back to List
+    </a>
+</h5>
+<script>
+
+    // let submitt = document.querySelector("#submit");
+    $("#submit").click(function() {
+       alert("Are you ready?");
+    });
+    function hanldeSubmit() {
+
+    }
+    function deleteStatus() {
+
+        $.ajax({
+                type:"post",
+                url:'http://localhost:8080/product/{id}/delete',
+                data:{data1:submitt},
+                success:function (reponsedata) {
+                    alert("Bạn có chắc chắn???")
+                }
+            }
+        )
+    }
+
+</script>
+<div id="form">
+    <form th:action="@{/product/delete}" method="post" novalidate="novalidate" th:object="${product}">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label>NAME</label>
+            <input type="text" th:field="*{name}">
+
+            <label>PRICE</label>
+            <input type="text" th:field="*{price}">
+
+            <label>DESCRIPTION</label>
+            <input type="text" th:field="*{description}">
+
+            <label>PROVIDER</label>
+            <input type="text" th:field="*{provider}">
+
+            <input type="submit" id="submit" value="DELETE">
+        </div>
+    </form>
+</div>
+<footer th:insert="/layout/footer :: footer"></footer>
+</body>
+</html>
