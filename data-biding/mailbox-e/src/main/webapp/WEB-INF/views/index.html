@@ -1,0 +1,70 @@
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h3>Settings</h3>
+    <hr>
+    <form method="POST" th:action="@{/home/info}" th:object="${emailSettings}">
+        <table>
+            <tr>
+                <td>
+                    <strong>Languages:</strong>
+                </td>
+                <td>
+                    <select th:field="*{languages}">
+                        <option value="English">English</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Chinese">Chinese</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Page Size:</strong>
+                </td>
+                <td>
+                    Show
+                    <span>
+                        <select th:field="*{size}" >
+                            <option value="10">10</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                            <option value="70">70</option>
+                            <option value="100">100</option>
+                        </select>
+                    </span>
+                    email per page
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Spams filter: </strong></td>
+                <td><input type="checkbox" th:field="*{spams_filter}" value="Enable spams filter"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Singnture:</strong>
+                </td>
+                <td>
+                    <textarea th:field="*{signuature}" cols="30" rows="10"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Update" style="color: green">
+                    <input type="button" value="Cancel" onclick='window.locantion.href="/home"'>
+                </td>
+            </tr>
+        </table>  
+
+    </form>    
+</body>
+</html>

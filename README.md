@@ -6,6 +6,7 @@ https://bitly.com.vn/nfhh90
 
 - Tổng quan về Spring MVC
 - Spring Controller
-- Thymeleaf 
+- View & Thymeleaf 
+- Data Biding & Form
 
 ## Kết quả đạt được
