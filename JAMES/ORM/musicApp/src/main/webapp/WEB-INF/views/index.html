@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: header"></head>
+<body>
+<h3>Music Management</h3>
+<h5>
+    <a th:href="@{/music/create}">
+        Add songs
+    </a>
+</h5>
+
+<!--/*@thymesVar id="message" type="java"*/-->
+<div th:if="${message} != null">
+    <div>
+        <span th:text="${message}" style="color: darkred"></span>
+    </div>
+</div>
+<table id="songs">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name Song</th>
+        <th>Singer</th>
+        <th>Category</th>
+        <th>Sound</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song, iterStart : ${musics}">
+        <td th:text="${iterStart.count}"></td>
+        <td th:text="${song.nameSong}"></td>
+        <td th:text="${song.singer}"></td>
+        <td th:text="${song.category}"></td>
+        <td>
+            <audio controls>
+                <source th:src="@{'/music/' + ${song.sound}}">
+            </audio>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

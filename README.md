@@ -8,5 +8,5 @@ https://bitly.com.vn/nfhh90
 - Spring Controller
 - View & Thymeleaf 
 - Data Biding & Form
-
+- ORM (Object Relational Mapping)
 ## Kết quả đạt được
