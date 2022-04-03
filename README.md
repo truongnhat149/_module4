@@ -9,4 +9,5 @@ https://bitly.com.vn/nfhh90
 - View & Thymeleaf 
 - Data Biding & Form
 - ORM (Object Relational Mapping)
+- JPA
 ## Kết quả đạt được
