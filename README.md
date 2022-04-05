@@ -10,4 +10,5 @@ https://bitly.com.vn/nfhh90
 - Data Biding & Form
 - ORM (Object Relational Mapping)
 - JPA
+- Spring Data Repository 
 ## Kết quả đạt được

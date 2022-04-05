@@ -82,7 +82,7 @@ public class ProvinceController {
         provinceService.save(province);
         ModelAndView modelAndView = new ModelAndView("/province/edit");
         modelAndView.addObject("province", province);
-        modelAndView.addObject("message", "Province updatede");
+        modelAndView.addObject("message", "Province updated");
         return modelAndView;
     }
 
