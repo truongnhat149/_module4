@@ -1,16 +1,17 @@
 package lpnt.cg.service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IGeneralService<T> {
 
-    List<T> findAll();
+    Iterable<T> findAll();
 
-    T findById(long id);
-
-    void remove(Long id);
+    Optional<T> findById(Long id);
 
     void save(T t);
+
+    void remove(Long id);
 
 }
 

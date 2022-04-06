@@ -4,6 +4,7 @@ import lpnt.cg.model.Blog;
 import lpnt.cg.model.Category;
 import lpnt.cg.service.blog.IBlogService;
 import lpnt.cg.service.category.ICategoryService;
+import lpnt.cg.utils.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -23,6 +25,25 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
+    @GetMapping("/blog/search")
+    public ModelAndView searchBlog(@RequestParam String search, Pageable pageable) {
+//        Page<Blog> blogs = blogService.findAll(pageable);
+//        Long id = null;
+//        List<Blog> blogs;
+//        if (Validation.isNumber(search)) {
+//            id = Long.valueOf(search);
+//            blogs = blogService.findAllByIdOrTitle(id, search);
+//
+//        } else {
+//
+//            blogs = blogService.findAllByIdOrTitle(id, search);
+//        }
+        search = "%" + search + "%"; 
+        List<Blog> blogs = blogService.findAllByIdOrTitleNavtiveQuery(search);
+        ModelAndView modelAndView = new ModelAndView("/blog/list");
+        modelAndView.addObject("blogs", blogs);
+        return modelAndView;
+    }
 
     @ModelAttribute("categories")
     public Iterable<Category> categories() {

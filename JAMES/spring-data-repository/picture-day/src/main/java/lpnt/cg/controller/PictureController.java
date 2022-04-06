@@ -25,7 +25,7 @@ public class PictureController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("/home");
         modelAndView.addObject("picture", new Picture());
-        List<Picture> pictures = pictureService.findAll();
+        Iterable<Picture> pictures = pictureService.findAll();
         modelAndView.addObject("pictures", pictures);
         return modelAndView;
     }
@@ -39,12 +39,12 @@ public class PictureController {
     @PostMapping(value = "like/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ResponseEntity<Picture> like(@PathVariable(name = "id") Long id) {
-        Picture comment = pictureService.like(id);
-        System.out.println(comment.getLikeCount());
-        if (comment == null) {
-            return new ResponseEntity<>(comment, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(comment, HttpStatus.OK);
+        List<Picture> comment = pictureService.like(id);
+//        if (comment == null) {
+//            return new ResponseEntity<Picture>(comment);
+//        }
+//        return new ResponseEntity<Picture>(comment, HttpStatus.OK);
+        return (ResponseEntity<Picture>) comment;
     }
 
 }

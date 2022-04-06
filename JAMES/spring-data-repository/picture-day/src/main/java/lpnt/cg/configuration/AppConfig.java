@@ -1,9 +1,5 @@
 package lpnt.cg.configuration;
 
-import lpnt.cg.repository.picture.IPictureRepository;
-import lpnt.cg.repository.picture.PictureRepository;
-import lpnt.cg.service.picture.IPictureService;
-import lpnt.cg.service.picture.PictureService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +7,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -32,8 +30,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
+@EnableSpringDataWebSupport
 @EnableTransactionManagement
-@ComponentScan("lpnt.cg.controller")
+@EnableJpaRepositories("lpnt.cg.repository")
+@ComponentScan("lpnt.cg")
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -113,13 +113,4 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return properties;
     }
 
-    @Bean
-    public IPictureRepository customerRepository() {
-        return new PictureRepository();
-    }
-
-    @Bean
-    public IPictureService customerService() {
-        return new PictureService();
-    }
 }
