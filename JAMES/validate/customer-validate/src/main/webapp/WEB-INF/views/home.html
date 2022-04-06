@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input phone number</title>
+</head>
+<body>
+<form th:action="@{/}" th:object="${phoneNumber}"
+      method="POST">
+  <table>
+    <tr>
+      <td>PhoneNumber</td>
+      <td><input th:field="*{number}" type="text"/></td>
+      <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</td>
+    </tr>
+  </table>
+  <input type="submit" value="CHECK">
+</form>
+</body>
+</html>
