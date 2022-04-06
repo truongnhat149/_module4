@@ -1,6 +1,7 @@
 package lpnt.cg.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table( name = "blogs")
@@ -14,6 +15,10 @@ public class Blog {
 
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Blog() {
 
     }
@@ -22,6 +27,22 @@ public class Blog {
         this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+
+    public Blog(Long id, String title, String content, Category category) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

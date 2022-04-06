@@ -1,23 +1,27 @@
 package lpnt.cg.service.blog;
 
 import lpnt.cg.model.Blog;
-import lpnt.cg.repository.blog.IBlogRepository;
+import lpnt.cg.model.Category;
+import lpnt.cg.repository.IBlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-import java.util.List;
-
+@Service
 public class BlogService implements  IBlogService {
 
     @Autowired
     public IBlogRepository blogRepository;
 
     @Override
-    public List<Blog> findAll() {
+    public Iterable<Blog> findAll() {
         return blogRepository.findAll();
     }
 
     @Override
-    public Blog findById(long id) {
+    public Optional<Blog> findById(Long id) {
         return blogRepository.findById(id);
     }
 
@@ -28,6 +32,21 @@ public class BlogService implements  IBlogService {
 
     @Override
     public void remove(Long id) {
-        blogRepository.remove(id);
+        blogRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Blog> findAllByCategory(Category category) {
+        return blogRepository.findAllByCategory(category);
+    }
+
+    @Override
+    public Page<Blog> findAll(Pageable pageable) {
+        return blogRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Blog> findAllByTitleContaining(String title, Pageable pageable) {
+        return blogRepository.findAllByTitleContaining(title, pageable);
     }
 }

@@ -1,9 +1,10 @@
 package lpnt.cg.configuration;
 
-import lpnt.cg.repository.blog.BlogRepository;
-import lpnt.cg.repository.blog.IBlogRepository;
+import lpnt.cg.formatter.CategoryFormatter;
+import lpnt.cg.repository.IBlogRepository;
 import lpnt.cg.service.blog.BlogService;
 import lpnt.cg.service.blog.IBlogService;
+import lpnt.cg.service.category.CategoryService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -33,7 +37,9 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("lpnt.cg.controller")
+@EnableSpringDataWebSupport
+@EnableJpaRepositories("lpnt.cg.repository")
+@ComponentScan("lpnt.cg")
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -112,13 +118,13 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return properties;
     }
 
-    @Bean
-    public IBlogRepository customerRepository() {
-        return new BlogRepository();
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new CategoryFormatter(applicationContext.getBean(CategoryService.class)));
     }
 
-    @Bean
-    public IBlogService customerService() {
-        return new BlogService();
-    }
+//    @Bean
+//    public IBlogService blogService() {
+//        return new BlogService();
+//    }
 }
