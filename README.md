@@ -12,5 +12,6 @@ https://bitly.com.vn/nfhh90
 - JPA
 - Spring Data Repository 
 - Validation
--
+- AOP & ExceptionHandler
+- 
 ## Kết quả đạt được
