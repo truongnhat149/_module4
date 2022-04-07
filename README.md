@@ -11,4 +11,6 @@ https://bitly.com.vn/nfhh90
 - ORM (Object Relational Mapping)
 - JPA
 - Spring Data Repository 
+- Validation
+-
 ## Kết quả đạt được

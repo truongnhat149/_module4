@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Form</title>
+</head>
+<body>
+<form th:object="${music}" th:action="@{/valid}" method="post" >
+  <table>
+    <tr>
+      <td>Name Song:</td>
+      <td><input th:field="*{nameSong}"></td>
+
+    </tr>
+    <tr>
+      <td>Singer:</td>
+      <td><input th:field="*{singer}"></td>
+
+    <tr>
+      <td>Sound:</td>
+      <td><input >
+        <audio src="#">
+          <source th:field="*{sound}">
+        </audio>
+      </td>
+
+    </tr>
+    <tr>
+      <td>Category:</td>
+      <td><input th:field="*{category}"></td>
+
+    </tr>
+
+    <tr>
+      <td>
+        <button type="submit">Submit</button>
+      </td>
+    </tr>
+  </table>
+  <footer>
+    <div>
+      <p th:if="${#fields.hasErrors('nameSong')}" th:errors="*{nameSong}"> </p>
+      <p th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}"></p>
+      <p th:if="${#fields.hasErrors('sound')}" th:errors="*{sound}"></p>
+      <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+    </div>
+
+  </footer>
+</form>
+</body>
+</html>
