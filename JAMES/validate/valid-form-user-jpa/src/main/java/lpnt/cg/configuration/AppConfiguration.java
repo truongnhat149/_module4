@@ -1,6 +1,7 @@
 package lpnt.cg.configuration;
 
 import lpnt.cg.repository.IUserRepository;
+import lpnt.cg.repository.UserRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -33,17 +34,17 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @EnableJpaRepositories("lpnt.cg.repository")
-@ComponentScan("lpnt.cg.controller")
+@ComponentScan("lpnt.cg")
 @EnableSpringDataWebSupport
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    private IUserRepository userRepository;
-
-    public AppConfiguration(IUserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Bean
+    public IUserRepository userRepository() {
+        return new UserRepository();
     }
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

@@ -19,14 +19,14 @@ public class FormController {
 
     @GetMapping("/user")
     public ModelAndView showForm() {
-        ModelAndView modelAndView = new ModelAndView("/index");
+        ModelAndView modelAndView = new ModelAndView("/home");
         modelAndView.addObject("user", new User());
         return modelAndView;
     }
 
     @PostMapping("/validateUser")
     public ModelAndView checkValidation(@Validated @ModelAttribute("user") User user, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView("/index") ;
+        ModelAndView modelAndView = new ModelAndView("/home") ;
         if (bindingResult.hasFieldErrors()) {
             modelAndView.addObject("message", "Create error !" );
             return  modelAndView ;
