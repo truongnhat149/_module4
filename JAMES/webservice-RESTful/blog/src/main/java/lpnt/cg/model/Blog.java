@@ -16,6 +16,7 @@ public class Blog {
     private String content;
 
     @ManyToOne
+//            (fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -45,10 +46,10 @@ public class Blog {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Blog[id=%d, title='%s', content='%s']", id, title, content);
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("Blog[id=%d, title='%s', content='%s']", id, title, content);
+//    }
 
     public Long getId() {
         return id;
