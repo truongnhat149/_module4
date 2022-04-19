@@ -14,4 +14,11 @@ https://bitly.com.vn/nfhh90
 - Validation
 - AOP & ExceptionHandler
 - Session & Cookie trong Spring
+- Web service and RESTful
+- AJAX
+- I18N
+- Spring Security
+- Automated Testing
+- Spring Boot
+- Deployment
 ## Kết quả đạt được
